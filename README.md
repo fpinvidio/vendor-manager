@@ -7,18 +7,20 @@ vendor-manager
 ---
 **Importing VendorManager - Dependency**
 
-1. git pull $url target
-2. cd target
+1. git pull https://github.com/fpinvidio/vendor-manager.git to target directory
+2. cd target directory
 3. mvn clean install
 4. cd current project
 5. add dependency to pom.xml
 <br />
 	`<dependency>`<br />
-	    &nbsp;&nbsp;&nbsp;&nbsp;`<groupId>org.apache.openejb</groupId>`<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;`<artifactId>javaee-api</artifactId>`<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;`<version>6.0-4</version>`<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;`<scope>provided</scope>`<br />
+	    &nbsp;&nbsp;&nbsp;&nbsp;`<groupId>vendor-manager</groupId>`<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;`<artifactId>vendor-manager</artifactId>`<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;`<version>1.0-SNAPSHOT</version>`<br />
     `</dependency>`
 6. mvn install current project
 
-####Federico Pérez
+####TODO
+---
+
+1.ClipStorage Integration
