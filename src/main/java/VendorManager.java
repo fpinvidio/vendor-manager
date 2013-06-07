@@ -24,30 +24,37 @@ public interface VendorManager {
      * Uploads movie and corresponding licenses, clips and clipData.
      * Movie must not exist on db and it has to contain relevant data for it to be stored.
      *
-     * <p>In order to upload movie, a userToken along with its roles need to be provided.</p>
+     * <p>In order to upload movie, a userToken along with the role needs to be provided.</p>
      *
      * @param userToken - the token of the uploading user.
-     * @param roles - the roles of the uploading user.
+     * @param role - the role of the uploading user.
      * @param movie - the movie object to be uploaded.
      * @throws InvalidTokenException
      */
-    public void uploadMovie(String userToken, List<Role> roles, Movie movie) throws InvalidTokenException;
+    public void uploadMovie(String userToken, Role role, Movie movie) throws InvalidTokenException;
 
     /**
+     * Uploads clipData and corresponding clip.
+     *
+     * <p>In order to upload clipData, a clip along with the role needs to be provided.</p>
      *
      * @param userToken - the token of the uploading user.
-     * @param roles - the roles of the uploading user.
+     * @param role - the role of the uploading user.
      * @param clipData - the clipData object to be uploaded
      * @throws InvalidTokenException
      */
-    public void uploadClip(String userToken, List<Role> roles,ClipData clipData) throws InvalidTokenException;
+    public void uploadClip(String userToken, Role role,ClipData clipData) throws InvalidTokenException;
 
     /**
+     * Uploads Ad and corresponding clip and clipData.
+     * Ad must not exist on db and it has to contain relevant data for it to be stored.
+     *
+     * <p>In order to upload movie, a userToken along with the role needs to be provided.</p>
      *
      * @param userToken - the token of the uploading user.
-     * @param roles - the roles of the uploading user.
+     * @param role - the role of the uploading user.
      * @param advertisement - the ad object to be uploaded
      * @throws InvalidTokenException
      */
-    public void uploadAd(String userToken, List<Role> roles,Ad advertisement) throws InvalidTokenException;
+    public void uploadAd(String userToken, Role role,Ad advertisement) throws InvalidTokenException;
 }

@@ -6,10 +6,11 @@
 import java.util.List;
 
 import edu.umflix.authenticationhandler.exceptions.InvalidTokenException;
+import edu.umflix.authenticationhandler.AuthenticationHandler;
+import edu.umflix.clipstorage.ClipStorage;
 import edu.umflix.exceptions.*;
 import edu.umflix.model.*;
 import edu.umflix.persistence.*;
-import edu.umflix.authenticationhandler.AuthenticationHandler;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -26,8 +27,8 @@ public class VendorManagerImpl implements VendorManager {
     @EJB(beanName = "ClipDaoImpl")
     ClipDao clipDao;
 
-    @EJB(beanName = "ClipDataDaoImpl")
-    ClipDataDao clipDataDao;
+    @EJB(beanName = "ClipStorage")
+    ClipStorage clipStorage;
 
     @EJB(beanName = "LicenseDaoImpl")
     LicenseDao licenseDao;
@@ -36,14 +37,14 @@ public class VendorManagerImpl implements VendorManager {
     MovieDao movieDao;
 
     @EJB(beanName = "AuthenticationHandlerImpl")
-     AuthenticationHandler authenticationHandler;
+    AuthenticationHandler authenticationHandler;
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void uploadMovie(@NotNull String userToken, @NotNull List<Role> roles, @NotNull Movie movie) throws InvalidTokenException {
-        if (authenticationHandler.validateToken(userToken, roles)) {
+    public void uploadMovie(@NotNull String userToken, @NotNull Role role, @NotNull Movie movie) throws InvalidTokenException {
+        if (authenticationHandler.isUserInRole(userToken, role)) {
             try {
                 movieDao.getMovieById(movie.getId());
             } catch (MovieNotFoundException e) {
@@ -52,7 +53,7 @@ public class VendorManagerImpl implements VendorManager {
                     for (License license : movie.getLicenses()) {
                         licenseDao.addLicense(license);
                     }
-                    // Missing ClipDataStorage Service
+                    clipStorage.storeClipData(null);
                     for (Clip clip : movie.getClips()) {
                         clipDao.addClip(clip);
                     }
@@ -67,9 +68,12 @@ public class VendorManagerImpl implements VendorManager {
      * {@inheritDoc}
      */
     @Override
-    public void uploadClip(@NotNull String userToken, @NotNull List<Role> roles, @NotNull ClipData clipData) throws InvalidTokenException {
-        if (authenticationHandler.validateToken(userToken, roles)) {
-            // Missing ClipDataStorage Service
+    public void uploadClip(@NotNull String userToken, @NotNull Role role, @NotNull ClipData clipData) throws InvalidTokenException {
+        if (authenticationHandler.isUserInRole(userToken, role)) {
+            if (clipData.getClip() != null) {
+                clipStorage.storeClipData(clipData);
+                clipDao.addClip(clipData.getClip());
+            }
         } else {
             throw new InvalidTokenException();
         }
@@ -79,14 +83,14 @@ public class VendorManagerImpl implements VendorManager {
      * {@inheritDoc}
      */
     @Override
-    public void uploadAd(@NotNull String userToken, @NotNull List<Role> roles, @NotNull Ad advertisement) throws InvalidTokenException {
-        if (authenticationHandler.validateToken(userToken, roles)) {
+    public void uploadAd(@NotNull String userToken, @NotNull Role role, @NotNull Ad advertisement) throws InvalidTokenException {
+        if (authenticationHandler.isUserInRole(userToken, role)) {
             try {
                 adDao.getAdById(advertisement.getId());
             } catch (AdNotFoundException e) {
                 adDao.addAd(advertisement);
                 clipDao.addClip(advertisement.getClip());
-                // Missing ClipDataStorage Service
+                clipStorage.storeClipData(null);
             }
         } else {
             throw new InvalidTokenException();
