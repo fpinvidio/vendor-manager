@@ -72,7 +72,6 @@ public class VendorManagerImpl implements VendorManager {
         if (authenticationHandler.isUserInRole(userToken, role)) {
             if (clipData.getClip() != null) {
                 clipStorage.storeClipData(clipData);
-                clipDao.addClip(clipData.getClip());
             }
         } else {
             throw new InvalidTokenException();
@@ -90,7 +89,6 @@ public class VendorManagerImpl implements VendorManager {
             } catch (AdNotFoundException e) {
                 adDao.addAd(advertisement);
                 clipDao.addClip(advertisement.getClip());
-                clipStorage.storeClipData(null);
             }
         } else {
             throw new InvalidTokenException();
