@@ -3,10 +3,13 @@
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  */
 
+package edu.um.umfix.vendormanager;
+
 import edu.umflix.authenticationhandler.exceptions.InvalidTokenException;
 import edu.umflix.model.*;
 
 import javax.ejb.Local;
+import javax.jws.WebService;
 import java.util.List;
 
 /**
@@ -31,6 +34,7 @@ public interface VendorManager {
      * @param movie - the movie object to be uploaded.
      * @throws InvalidTokenException
      */
+
     public void uploadMovie(String userToken, Role role, Movie movie) throws InvalidTokenException;
 
     /**

@@ -1,10 +1,11 @@
-/**
+ /**
  * Copyright (c) 2013, Federico Pérez Invidio. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  */
 
-import java.util.List;
+package edu.um.umfix.vendormanager.impl;
 
+import edu.um.umfix.vendormanager.VendorManager;
 import edu.umflix.authenticationhandler.exceptions.InvalidTokenException;
 import edu.umflix.authenticationhandler.AuthenticationHandler;
 import edu.umflix.clipstorage.ClipStorage;
@@ -14,6 +15,7 @@ import edu.umflix.persistence.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.jws.WebService;
 import javax.validation.constraints.NotNull;
 
 /**
