@@ -27,7 +27,7 @@ public class VendorManagerImpl implements VendorManager {
     @EJB(beanName = "ClipDaoImpl")
     ClipDao clipDao;
 
-    @EJB(beanName = "ClipStorage")
+    @EJB(beanName = "clipstorage")
     ClipStorage clipStorage;
 
     @EJB(beanName = "LicenseDaoImpl")
@@ -48,7 +48,7 @@ public class VendorManagerImpl implements VendorManager {
             try {
                 movieDao.getMovieById(movie.getId());
             } catch (MovieNotFoundException e) {
-                if (movie.getClips() != null && movie.getLicenses() != null) {
+                /*if (movie.getClips() != null && movie.getLicenses() != null) {
                     movieDao.addMovie(movie);
                     for (License license : movie.getLicenses()) {
                         licenseDao.addLicense(license);
@@ -57,7 +57,8 @@ public class VendorManagerImpl implements VendorManager {
                     for (Clip clip : movie.getClips()) {
                         clipDao.addClip(clip);
                     }
-                }
+                }*/
+                movieDao.addMovie(movie);
             }
         } else {
             throw new InvalidTokenException();
@@ -88,7 +89,7 @@ public class VendorManagerImpl implements VendorManager {
                 adDao.getAdById(advertisement.getId());
             } catch (AdNotFoundException e) {
                 adDao.addAd(advertisement);
-                clipDao.addClip(advertisement.getClip());
+                //clipDao.addClip(advertisement.getClip());
             }
         } else {
             throw new InvalidTokenException();
