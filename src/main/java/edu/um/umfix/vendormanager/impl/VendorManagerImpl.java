@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 /**
  * {@inheritDoc}
  */
-@Stateless
+@Stateless(name = "VendorManager")
 public class VendorManagerImpl implements VendorManager {
     @EJB(beanName = "AdDaoImpl")
     AdDao adDao;
