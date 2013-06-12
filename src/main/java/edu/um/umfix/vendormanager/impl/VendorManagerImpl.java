@@ -1,4 +1,4 @@
- /**
+/**
  * Copyright (c) 2013, Federico Pérez Invidio. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  */
@@ -21,25 +21,26 @@ import javax.validation.constraints.NotNull;
 /**
  * {@inheritDoc}
  */
+@WebService(portName = "VendorManagerPort", serviceName = "VendorManagerWebService", targetNamespace = "http://um.org/wsdl")
 @Stateless(name = "VendorManager")
 public class VendorManagerImpl implements VendorManager {
-    @EJB(beanName = "AdDaoImpl")
-    AdDao adDao;
+    @EJB(beanName = "AdDao")
+    protected AdDao adDao;
 
-    @EJB(beanName = "ClipDaoImpl")
-    ClipDao clipDao;
+    @EJB(beanName = "ClipDao")
+    protected ClipDao clipDao;
 
     @EJB(beanName = "clipstorage")
-    ClipStorage clipStorage;
+    protected ClipStorage clipStorage;
 
-    @EJB(beanName = "LicenseDaoImpl")
-    LicenseDao licenseDao;
+    @EJB(beanName = "LicenseDao")
+    protected LicenseDao licenseDao;
 
-    @EJB(beanName = "MovieDaoImpl")
-    MovieDao movieDao;
+    @EJB(beanName = "MovieDao")
+    protected MovieDao movieDao;
 
     @EJB(beanName = "AuthenticationHandlerImpl")
-    AuthenticationHandler authenticationHandler;
+    protected AuthenticationHandler authenticationHandler;
 
     /**
      * {@inheritDoc}
