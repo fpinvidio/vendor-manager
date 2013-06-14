@@ -19,8 +19,3 @@ vendor-manager
         &nbsp;&nbsp;&nbsp;&nbsp;`<version>1.0-SNAPSHOT</version>`<br />
     `</dependency>`
 6. mvn install current project
-
-####TODO
----
-
-1.ClipStorage Integration
