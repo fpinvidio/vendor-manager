@@ -98,7 +98,7 @@ public class VendorManagerImplTest {
      * Tests the uploading of a movie with an invalid token.
      */
     @Test
-    public void testInvalidToken() {
+    public void testInvalidTokenInMovie() {
         String userToken = "invalidTokenMovieProvider";
         Movie movie = mock(Movie.class);
         try {
@@ -112,11 +112,39 @@ public class VendorManagerImplTest {
      * Tests the uploading of a movie with an invalid Role.
      */
     @Test
-    public void testInvalidRole() {
+    public void testInvalidRoleInMovie() {
         String userToken = "validTokenUser";
         Movie movie = mock(Movie.class);
         try {
             vendorManager.uploadMovie(userToken, movieProvider, movie);
+        } catch (InvalidTokenException e) {
+            assertTrue(true);
+        }
+    }
+
+    /**
+     * Tests the uploading of an ad with an invalid token or role.
+     */
+    @Test
+    public void testInvalidTokenInAd() {
+        String userToken = "invalidTokenUser";
+        Ad ad = mock(Ad.class);
+        try {
+            vendorManager.uploadAd(userToken, movieProvider, ad);
+        } catch (InvalidTokenException e) {
+            assertTrue(true);
+        }
+    }
+
+    /**
+     * Tests the uploading of a clip data with an invalid token or role.
+     */
+    @Test
+    public void testInvalidTokenInClip() {
+        String userToken = "invalidTokenUser";
+        ClipData clipData = mock(ClipData.class);
+        try {
+            vendorManager.uploadClip(userToken, movieProvider, clipData);
         } catch (InvalidTokenException e) {
             assertTrue(true);
         }
