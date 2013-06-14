@@ -13,6 +13,8 @@ import org.junit.Test;
 import edu.umflix.authenticationhandler.AuthenticationHandler;
 import edu.umflix.persistence.*;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
