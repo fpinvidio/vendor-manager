@@ -29,3 +29,9 @@ vendor-manager
 5. copy .war to webapps folder
 6. for viewing wsdl go to http://127.0.0.1:8080/vendor-manager-1.0-SNAPSHOT/webservices/VendorManager?wsdl
 7. if you are unable to access wsdl run shutdown.sh and startup.sh scripts in tomee and try again
+
+**To be provided dependencies
+
+1. AutenticationHandler
+2. ClipStorage
+3. Umflix-presistence
