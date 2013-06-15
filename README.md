@@ -20,7 +20,7 @@ vendor-manager
     `</dependency>`
 6. mvn install current project
 
-**Importing VendorManager - Release v1.0**
+**Deploying VendorManager - Release v1.0**
 
 1. download https://github.com/fpinvidio/vendor-manager/archive/v1.0.tar.gz and extract
 2. cd extract directory
@@ -28,4 +28,4 @@ vendor-manager
 4. cd target directory
 5. copy .war to webapps folder
 6. for viewing wsdl go to http://127.0.0.1:8080/vendor-manager-1.0-SNAPSHOT/webservices/VendorManager?wsdl
-7. If you can't access wsdl run shutdown.sh and startup.sh scripts in tomee and try again
+7. if you are unable to access wsdl run shutdown.sh and startup.sh scripts in tomee and try again
